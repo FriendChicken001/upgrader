@@ -652,9 +652,9 @@ class Upgrader {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(message),
-          Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: Text(messages.message(UpgraderMessage.prompt)!)),
+          // Padding(
+          //     padding: const EdgeInsets.only(top: 15.0),
+          //     child: Text(messages.message(UpgraderMessage.prompt)!)),
           if (notes != null) notes,
         ],
       )),
@@ -699,9 +699,9 @@ class Upgrader {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Text(message),
-          Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: Text(messages.message(UpgraderMessage.prompt)!)),
+          // Padding(
+          //     padding: const EdgeInsets.only(top: 15.0),
+          //     child: Text(messages.message(UpgraderMessage.prompt)!)),
           if (notes != null) notes,
         ],
       ),
