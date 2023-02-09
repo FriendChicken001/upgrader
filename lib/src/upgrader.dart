@@ -148,6 +148,8 @@ class Upgrader {
   bool _hasAlerted = false;
   bool _isCriticalUpdate = false;
 
+  String? customMessage;
+
   /// Track the initialization future so that [initialize] can be called multiple times.
   Future<bool>? _futureInit;
 
@@ -176,6 +178,7 @@ class Upgrader {
     this.languageCode,
     this.minAppVersion,
     this.dialogStyle = UpgradeDialogStyle.material,
+    this.customMessage,
     TargetPlatform? platform,
   })  : client = client ?? http.Client(),
         messages = messages ?? UpgraderMessages(),
@@ -397,11 +400,15 @@ class Upgrader {
 
   String message() {
     var msg = messages.message(UpgraderMessage.body)!;
-    msg = msg.replaceAll('{{appName}}', appName());
-    msg = msg.replaceAll(
-        '{{currentAppStoreVersion}}', currentAppStoreVersion() ?? '');
-    msg = msg.replaceAll(
-        '{{currentInstalledVersion}}', currentInstalledVersion() ?? '');
+    if (customMessage != null) {
+      msg = customMessage ?? '';
+    } else {
+      msg = msg.replaceAll('{{appName}}', appName());
+      msg = msg.replaceAll(
+          '{{currentAppStoreVersion}}', currentAppStoreVersion() ?? '');
+      msg = msg.replaceAll(
+          '{{currentInstalledVersion}}', currentInstalledVersion() ?? '');
+    }
     return msg;
   }
 
