@@ -400,15 +400,12 @@ class Upgrader {
 
   String message() {
     var msg = messages.message(UpgraderMessage.body)!;
-    if (customMessage != null) {
-      msg = customMessage ?? '';
-    } else {
-      msg = msg.replaceAll('{{appName}}', appName());
-      msg = msg.replaceAll(
-          '{{currentAppStoreVersion}}', currentAppStoreVersion() ?? '');
-      msg = msg.replaceAll(
-          '{{currentInstalledVersion}}', currentInstalledVersion() ?? '');
-    }
+    msg = msg.replaceAll('{{appName}}', appName());
+    msg = msg.replaceAll(
+        '{{currentAppStoreVersion}}', currentAppStoreVersion() ?? '');
+    msg = msg.replaceAll(
+        '{{currentInstalledVersion}}', currentInstalledVersion() ?? '');
+
     return msg;
   }
 
@@ -426,7 +423,7 @@ class Upgrader {
           _showDialog(
               context: context,
               title: messages.message(UpgraderMessage.title),
-              message: message(),
+              message: customMessage ?? message(),
               releaseNotes: shouldDisplayReleaseNotes() ? _releaseNotes : null,
               canDismissDialog: canDismissDialog);
         });
